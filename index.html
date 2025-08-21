@@ -34,18 +34,7 @@ body {
   background: #000 url('images/neom-bg.jpg') center/cover no-repeat fixed;
   background-attachment: scroll; /*default */
 }
-
-/* Overlay effect */
-body::before {
-  content: "";
-  position: absolute;   /* changed from fixed */
-  top: 0; left: 0; right: 0; bottom: 0;
-  min-height: 100vh;    /* ensures it covers full viewport */
-  background: radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0.45) 100%);
-  pointer-events: none;
-  z-index: -1;          /* behind content */
-}
-
+    
 /* Animations */
 @keyframes card-entrance {
   0% { opacity: 0; transform: translateY(40px) scale(0.95); }
