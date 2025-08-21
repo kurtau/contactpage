@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kurt Ulm • Contact</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-overlay: rgba(255,255,255,0.65);
+      --text: #0f172a;
+      --muted: #475569;
+      --ring: rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: var(--text); display: grid; place-items: center; }
+
+    /* Fixed background layer */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('images/neom-bg.jpg') center/cover no-repeat;
+      z-index: -2;
+    }
+
+    /* Overlay gradient */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0.45) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes card-entrance {
+      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fadeInDivider {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .card {
+      position: relative;
+      width: min(90vw, 520px);
+      padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 36px) clamp(20px, 3vw, 36px);
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: saturate(1.1);
+      border: 1px solid var(--ring);
+      animation: card-entrance 0.8s ease-out forwards;
+    }
+
+    .avatar {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+      border: 2px solid rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 3.4vw, 36px);
+      line-height: 1.1;
+    }
+
+    .divider {
+      height: 2px;
+      width: 50%;
+      background: linear-gradient(to right, #B8703E, #A3CED8);
+      border-radius: 1px;
+      margin: 10px 0;
+      opacity: 0;
+      animation: fadeInDivider 0.8s ease forwards 0.4s;
+    }
+
+    p.contact-text {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: clamp(14px, 1.8vw, 16px);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .actions a {
+      display: inline-block;
+      text-decoration: none;
+      border: none;
+    }
+
+    .actions img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      transition: transform 0.25s ease;
+      cursor: pointer;
+    }
+
+    .actions img:hover {
+      transform: scale(1.2);
+    }
+
+    /* Optional: mobile fallback for very old browsers */
+    @media (max-width: 480px) {
+      body::before {
+        background-attachment: scroll; /* fallback if fixed fails */
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="card" role="region" aria-label="Contact card">
+    <img class="avatar" src="images/arizona.jpg" alt="Portrait photo" loading="lazy" />
+    <h1>Kurt Ulm</h1>
+    <p class="divider"></p>
+    <p class="contact-text">Contact</p>
+    <div class="actions">
+      <a href="mailto:abc@aol.com">
+        <img src="images/emailicon.png" alt="Email icon" />
+      </a>
+      <a href="https://www.instagram.com/kurtau/">
+        <img src="images/instagram.png" alt="Instagram icon" />
+      </a>
+    </div>
+  </main>
+</body>
+</html>
