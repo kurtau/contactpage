@@ -11,136 +11,123 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-:root {
-  --bg-overlay: rgba(255,255,255,0);
-  --text: #0f172a;
-  --muted: #475569;
-  --ring: rgba(0,0,0,0.08);
-}
+    :root {
+      --text: #0f172a;
+      --muted: #475569;
+    }
 
-/* Box-sizing & base styles */
-* { box-sizing: border-box; }
-html, body {
-  height: 100%;
-  color-scheme: light; /* Helps prevent dark mode overrides */
-}
+    * { box-sizing: border-box; }
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      color-scheme: light; /* prevents dark mode overrides */
+    }
 
-body {
-  margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text);
-  display: grid;
-  place-items: center;
-  background: #000 url('images/neom-bg.jpg') center/cover no-repeat fixed;
-  background-attachment: scroll; /*default */
-}
-    
-/* Animations */
-@keyframes card-entrance {
-  0% { opacity: 0; transform: translateY(40px) scale(0.95); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      display: grid;
+      place-items: center;
+      background: #000 url('images/neom-bg.jpg') center/cover no-repeat;
+      background-attachment: scroll;
+      color: var(--text);
+    }
 
-@keyframes fadeInDivider {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
+    @keyframes card-entrance {
+      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
 
-/* Card styles */
-.card {
-  position: relative;
-  width: min(90vw, 520px);
-  padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 36px) clamp(20px, 3vw, 36px);
-  
-  /* Softer white background with transparency */
-  background: rgba(255, 255, 255, 0.7);
-  
-  /* Slight blur to integrate with dark background */
-  backdrop-filter: saturate(1.1) blur(10px);
-  
-  border-radius: 24px;
-  
-  /* Softer shadow for depth */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  
-  /* Subtle border for definition */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  
-  /* Entrance animation */
-  animation: card-entrance 0.8s ease-out forwards;
-  
-  /* Ensure text remains readable */
-  color: var(--text);
-}
+    @keyframes fadeInDivider {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
 
-/* Avatar */
-.avatar {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 20%;
-  display: block;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-  border: 2px solid rgba(0,0,0,0.06);
-  margin-bottom: 20px;
-}
+    .card {
+      position: relative;
+      width: min(90vw, 520px);
+      padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 36px) clamp(20px, 3vw, 36px);
 
-/* Headings */
-h1 {
-  margin: 0 0 8px;
-  font-size: clamp(24px, 3.4vw, 36px);
-  line-height: 1.1;
-}
+      /* Softer white background with transparency */
+      background: rgba(255, 255, 255, 0.80);
 
-/* Divider */
-.divider {
-  height: 2px;
-  width: 50%;
-  background: linear-gradient(to right, #B8703E, #A3CED8);
-  border-radius: 1px;
-  margin: 10px 0;
-  opacity: 0;
-  animation: fadeInDivider 0.8s ease forwards 0.4s;
-}
+      /* Slight blur and subtle radial highlight */
+      backdrop-filter: saturate(1.1) blur(12px);
+      background-image: radial-gradient(
+        circle at 50% 40%,
+        rgba(255,255,255,0.08) 0%,
+        rgba(0,0,0,0.05) 100%
+      );
 
-/* Contact text */
-p.contact-text {
-  margin: 0 0 18px;
-  color: var(--muted);
-  font-size: clamp(14px, 1.8vw, 16px);
-}
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
 
-/* Action buttons */
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
-}
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
 
-.actions a {
-  display: inline-block;
-  text-decoration: none;
-  border: none;
-}
+      animation: card-entrance 0.8s ease-out forwards;
+      color: var(--text);
+    }
 
-.actions img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  transition: transform 0.25s ease;
-  cursor: pointer;
-}
+    .avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+      border: 2px solid rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
 
-.actions img:hover {
-  transform: scale(1.2);
-}
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 3.4vw, 36px);
+      line-height: 1.1;
+    }
 
+    .divider {
+      height: 2px;
+      width: 50%;
+      background: linear-gradient(to right, #B8703E, #A3CED8);
+      border-radius: 1px;
+      margin: 10px 0;
+      opacity: 0;
+      animation: fadeInDivider 0.8s ease forwards 0.4s;
+    }
+
+    p.contact-text {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: clamp(14px, 1.8vw, 16px);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .actions a {
+      display: inline-block;
+      text-decoration: none;
+      border: none;
+    }
+
+    .actions img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      transition: transform 0.25s ease;
+      cursor: pointer;
+    }
+
+    .actions img:hover {
+      transform: scale(1.2);
+    }
   </style>
 </head>
 <body>
