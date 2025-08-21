@@ -12,127 +12,141 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/arizona.avif">
   <link rel="preload" as="image" href="images/noem-big.avif">
-  
 
 <style>
-    :root {
-      --text: #0f172a;
-      --muted: #475569;
-    }
+  :root {
+    --text: #0f172a;
+    --muted: #475569;
+  }
 
-    * { box-sizing: border-box; }
-    html, body { 
-      height: 100%; 
-      margin: 0; 
-      color-scheme: light; /* prevents dark mode overrides */
-    }
+  * { box-sizing: border-box; }
+  html, body { 
+    height: 100%; 
+    margin: 0; 
+    color-scheme: light; /* prevents dark mode overrides */
+  }
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      display: grid;
-      place-items: center;
-      background: #000 url('images/neom-bg.avif') center/cover no-repeat;
-      background-attachment: scroll;
-      color: var(--text);
-    }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    display: grid;
+    place-items: center;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+  }
 
-    @keyframes card-entrance {
-      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
+  /* Background fade-in layer */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000 url('images/neom-bg.avif') center/cover no-repeat;
+    opacity: 0;
+    animation: fadeInBg 1.0s ease-out forwards;
+  }
 
-    @keyframes fadeInDivider {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
+  @keyframes fadeInBg {
+    to { opacity: 1; }
+  }
 
-    .card {
-      position: relative;
-      width: min(90vw, 520px);
-      padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 36px) clamp(20px, 3vw, 36px);
+  @keyframes card-entrance {
+    0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
 
-      /* Softer white background with transparency */
-      background: rgba(255, 255, 255, 0.80);
+  @keyframes fadeInDivider {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 
-      /* Slight blur and subtle radial highlight */
-      backdrop-filter: saturate(1.1) blur(12px);
-      background-image: radial-gradient(
-        circle at 50% 40%,
-        rgba(255,255,255,0.08) 0%,
-        rgba(0,0,0,0.05) 100%
-      );
+  .card {
+    position: relative;
+    z-index: 1; /* keep card above fading background */
+    width: min(90vw, 520px);
+    padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 36px) clamp(20px, 3vw, 36px);
 
-      border-radius: 24px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.1);
+    /* Softer white background with transparency */
+    background: rgba(255, 255, 255, 0.80);
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    /* Slight blur and subtle radial highlight */
+    backdrop-filter: saturate(1.1) blur(12px);
+    background-image: radial-gradient(
+      circle at 50% 40%,
+      rgba(255,255,255,0.08) 0%,
+      rgba(0,0,0,0.05) 100%
+    );
 
-      animation: card-entrance 0.8s ease-out forwards;
-      color: var(--text);
-    }
+    border-radius: 24px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
 
-    .avatar {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center 20%;
-      display: block;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-      border: 2px solid rgba(0,0,0,0.06);
-      margin-bottom: 20px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 
-    h1 {
-      margin: 0 0 8px;
-      font-size: clamp(24px, 3.4vw, 36px);
-      line-height: 1.1;
-    }
+    animation: card-entrance 0.8s ease-out forwards;
+    color: var(--text);
+  }
 
-    .divider {
-      height: 2px;
-      width: 50%;
-      background: linear-gradient(to right, #B8703E, #A3CED8);
-      border-radius: 1px;
-      margin: 10px 0;
-      opacity: 0;
-      animation: fadeInDivider 0.8s ease forwards 0.4s;
-    }
+  .avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    border: 2px solid rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+  }
 
-    p.contact-text {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: clamp(14px, 1.8vw, 16px);
-    }
+  h1 {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 3.4vw, 36px);
+    line-height: 1.1;
+  }
 
-    .actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 12px;
-    }
+  .divider {
+    height: 2px;
+    width: 50%;
+    background: linear-gradient(to right, #B8703E, #A3CED8);
+    border-radius: 1px;
+    margin: 10px 0;
+    opacity: 0;
+    animation: fadeInDivider 0.8s ease forwards 0.4s;
+  }
 
-    .actions a {
-      display: inline-block;
-      text-decoration: none;
-      border: none;
-    }
+  p.contact-text {
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-size: clamp(14px, 1.8vw, 16px);
+  }
 
-    .actions img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      transition: transform 0.25s ease;
-      cursor: pointer;
-    }
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+  }
 
-    .actions img:hover {
-      transform: scale(1.2);
-    }
-  </style>
+  .actions a {
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+  }
+
+  .actions img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+    cursor: pointer;
+  }
+
+  .actions img:hover {
+    transform: scale(1.2);
+  }
+</style>
 </head>
 <body>
   <main class="card" role="region" aria-label="Contact card">
